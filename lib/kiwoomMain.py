@@ -44,12 +44,12 @@ class Kiwoom(QAxWidget):
 
         self.login_event_loop.exit()
 
-    def get_code_list_by_market(self, market):
+    def get_code_list_by_market(self, market):  # 시장구분에 따른 종목코드 반환 
         code_list = self.dynamicCall("GetCodeListByMarket(QString)", market)   # call Kiwoom method
         code_list = code_list.split(';')
         return code_list[:-1]
 
-    def get_master_code_name(self, code):
+    def get_master_code_name(self, code):  # 종목코드 한글명 반환
         code_name = self.dynamicCall("GetMasterCodeName(QString)", code)
         return code_name
 

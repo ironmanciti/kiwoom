@@ -15,7 +15,7 @@ from matplotHangul import *
 start_code = '000000'
 end_code   = '900000'
 
-market_code = '201' # KOSPI200 을 beta 1 로 함 / 만약 '001' 로 하면 KOPSI ANY 종목 대상
+market_code = '201' # KOSPI200 / 만약 '001' 로 하면 KOPSI ANY 종목 대상
 f_score = 7         # momentum 계산양을 줄이기 위해 KOSPI200 종목 중 F-SCORE 7 이상인 종목으로 대상 한정
 
 period = 1  # duration of pct_change --> daily return 을 기준으로 beta 계산

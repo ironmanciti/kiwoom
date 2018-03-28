@@ -35,7 +35,6 @@
 # 047050	포스코대우
 # 003620	쌍용차
 
-
 import datetime
 import backtrader as bt
 import math
@@ -47,7 +46,7 @@ import sys
 sys.path.append('../lib/')
 from dbConnect import *
 
-stock = '047810'
+stock = '003620'
 alt1 = (stock,datetime.datetime(2017,1,1),datetime.datetime(2017,4,1))
 alt2 = (stock,datetime.datetime(2017,1,1),datetime.datetime(2017,7,1))
 alt3 = (stock,datetime.datetime(2017,1,1),datetime.datetime(2017,10,1))
@@ -170,13 +169,13 @@ def main(icode, ifromdate, itodate):
     cerebro.run()
 
     portvalue = cerebro.broker.getvalue()
-    pnl = portvalue - startcash
+    pnl = round(portvalue - startcash)
 
     days = (todate - fromdate).days
     rate = pnl / startcash * 365 / days  * 100
 
     #Print out the final Result
-    print('P/L: KRW {0:,}  Annualized Rate: {1:.2f} %'.format(round(pnl), rate))
+    print('P/L: KRW {0:,}  Annualized Rate: {1:.2f} %'.format(pnl, rate))
     #----------------- Plot result -------------------------------------
     cerebro.plot(style='candlestick')
 
