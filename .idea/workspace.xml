@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e7843735-9c2b-49c3-9b91-55c2cfb975e3" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/PyTrader/PyMon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Untitled2-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/2006-day-001.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/SPYBackTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackTrader/SPYBackTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/Untitled1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BackTrader/Untitled1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/backtraderTest.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BackTrader/backtraderTest.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/orcl-2014.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrader/simpleBackTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackTrader/simpleBackTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/.ipynb_checkpoints/F-SCORE-Copy1-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FinancialSheet/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_01_재무상태표_20160531.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_01_재무상태표_연결_20160531.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_02_손익계산서_20160531.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_02_손익계산서_연결_20160531.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_03_포괄손익계산서_20160531.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_03_포괄손익계산서_연결_20160531.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_04_현금흐름표_20160601.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2015_4Q_FS/_2015_사업보고서_04_현금흐름표_연결_20160601.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_01_재무상태표_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_01_재무상태표_연결_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_02_손익계산서_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_02_손익계산서_연결_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_03_포괄손익계산서_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_03_포괄손익계산서_연결_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_04_현금흐름표_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/2016_4Q_FS/_2016_사업보고서_04_현금흐름표_연결_20170524.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/F-SCORE.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FinancialSheet/F-SCORE.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancialSheet/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FinancialSheet/Untitled.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/.ipynb_checkpoints/Q_Logit,+LDA,+QDA-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/.ipynb_checkpoints/Stock Market Prediction - 2-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/.ipynb_checkpoints/Stock Market Prediction-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/.ipynb_checkpoints/Untitled1-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/Q_Logit,+LDA,+QDA.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/Q_Tear_Sheet.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/Stock Market Prediction - 2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/Stock Market Prediction.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/Untitled1.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/AXJO.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/DJI.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/FCHI.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/GDAXI.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/HSI.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/IXIC.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/N225.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/SPY.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/XMA.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/data/YMA.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/pickle/ADA-2018-03-28.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/pickle/GTB-2018-03-28.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/pickle/LDA-2018-03-28.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/pickle/RF-2018-03-28.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/predict_SPY.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/spyder_LDA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/spyder_LogisticRegression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predict Next Day Return/spyder_QDA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyTrader/pytrader.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyTrader/pytrader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyTrader/pytrader.ui" beforeDir="false" afterPath="$PROJECT_DIR$/PyTrader/pytrader.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled1.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorator.py" beforeDir="false" afterPath="$PROJECT_DIR$/decorator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/kiwoomMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/kiwoomMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockdb/dailyCandleBatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/dailyCandleBatch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockdb/logfile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/logfile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockdb/runCandle-ALL-stocks.bat" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/runCandle-ALL-stocks.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockdb/runCandle-KOSPI200.bat" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/runCandle-KOSPI200.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockdb/stockCodeList.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/stockCodeList.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="googleapi">
+      <favorite_root url="file://$PROJECT_DIR$/qt5/qtTest/app.py" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+    </favorites_list>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="kiwoomMain.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/kiwoomMain.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/qt5/qtTest/QMainWindow.py" />
+        <option value="$PROJECT_DIR$/qt5/qtTest/QtDesign.py" />
+        <option value="$PROJECT_DIR$/qt5/qtTest/QFileDialog.py" />
+        <option value="$PROJECT_DIR$/qt5/qtTest/window_and_dialog.py" />
+        <option value="$PROJECT_DIR$/qt5/qtTest/mainLayout_and_pyplot.py" />
+        <option value="$PROJECT_DIR$/qt5/qtTest/debuggerTest.py" />
+        <option value="$PROJECT_DIR$/qt5/qtTest/app.py" />
+        <option value="$PROJECT_DIR$/lib/kiwoomMain.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="275" />
+    <option name="y" value="50" />
+    <option name="width" value="1585" />
+    <option name="height" value="990" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="kiwoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kiwoom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kiwoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kiwoom" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kiwoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kiwoom" type="462c0819:PsiDirectoryNode" />
+              <item name="qt5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kiwoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kiwoom" type="462c0819:PsiDirectoryNode" />
+              <item name="qt5" type="462c0819:PsiDirectoryNode" />
+              <item name="qtTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kiwoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Deep_Learning_A_Z" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/qt5/qtTest/QFileDialog.py" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="kiwoom" is-module-sdk="true" working-directory="$PROJECT_DIR$/qt5/qtTest">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="kiwoom" />
+        <option name="myWorkingDirectory" value="$PROJECT_DIR$/qt5/qtTest" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.kiwoomMain">
+    <configuration name="debuggerTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kiwoom" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/qt5/qtTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qt5/qtTest/debuggerTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="kiwoomLogin" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kiwoom" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/qt5/qtTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qt5/qtTest/kiwoomLogin.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="kiwoomMain" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kiwoom" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lib" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lib/kiwoomMain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="mainLayout_and_pyplot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kiwoom" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/qt5/qtTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qt5/qtTest/mainLayout_and_pyplot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="window_and_dialog" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kiwoom" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/qt5/qtTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qt5/qtTest/window_and_dialog.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.kiwoomLogin" />
+      <item itemvalue="Python.window_and_dialog" />
+      <item itemvalue="Python.mainLayout_and_pyplot" />
+      <item itemvalue="Python.debuggerTest" />
+      <item itemvalue="Python.kiwoomMain" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.kiwoomMain" />
+        <item itemvalue="Python.debuggerTest" />
+        <item itemvalue="Python.mainLayout_and_pyplot" />
+        <item itemvalue="Python.window_and_dialog" />
+        <item itemvalue="Python.kiwoomLogin" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED,SHOW_FIELDS" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e7843735-9c2b-49c3-9b91-55c2cfb975e3" name="Default" comment="" />
+      <created>1536393358396</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1536393358396</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4939759" visible="true" weight="0.19233312" />
+      <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49916804" weight="0.17549168" />
+      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49959183" weight="0.31871346" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4983361" weight="0.291834" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.3502496" weight="0.32931727" />
+      <window_info id="Structure" order="1" sideWeight="0.5011287" side_tool="true" weight="0.23876871" />
+      <window_info anchor="bottom" x="157" y="312" width="1201" height="218" id="Terminal" order="8" sideWeight="0.49916804" weight="0.0053547523" />
+      <window_info id="Favorites" order="2" sideWeight="0.5060241" side_tool="true" visible="true" weight="0.19233312" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5016639" side_tool="true" weight="0.32980332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/qt5/qtTest/debuggerTest.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/qt5/qtTest/window_and_dialog.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lib/kiwoomMain.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="23" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="c" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>c</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/lib/kiwoomMain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/debuggerTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/QFileDialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/debuggerTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/QFileDialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/window_and_dialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="48" column="13" selection-start-line="26" selection-end-line="48" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/mainLayout_and_pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/QMainWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/QtDesign.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/kiwoomLogin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-738">
+          <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Miniconda3/envs/py36_32/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="308" selection-start-line="308" selection-end-line="308" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/mainLayout_and_pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/window_and_dialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/QFileDialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Miniconda3/envs/py36_32/Lib/site-packages/iexfinance/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt5/qtTest/debuggerTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/kiwoomMain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

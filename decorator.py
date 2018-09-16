@@ -1,34 +1,23 @@
 # -*- coding: utf-8 -*-
-def decorator_function(original_function):
-    def wrapper_function(*args, **kwargs):  #1
-        print ('{} 함수가 실행되었습니다.'.format(original_function.__name__))
-        return original_function(*args, **kwargs)  #2
-    return wrapper_function
+import datetime
+import time
 
-def display():
-    pass
+def my_logger(original_function):
+    import logging
+    logging.basicConfig(filename='{}.log'.format(original_function.__name__), level=logging.INFO)
+
+    def wrapper(*args, **kwarg):
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+        logging.info(
+            '[{}] 실행결과 args - {}, kwarg - {}'.format(timestamp, args, kwarg)
+        )
+        return original_function(*args, **kwarg)
+
+    return wrapper
+
+@my_logger
 def display_info(name, age):
-    print ('display_info({}, {}) 함수가 실행됐습니다.'.format(name, age))
-display_1 = decorator_function(display)
-display_info = decorator_function(display_info)
+    time.sleep(2)
+    print('display_info ({}, {}) 함수가 실행되었습니다.'.format(name, age))
 
-display_1()
-display_info('John', 25)
-
-# @decorator_function
-# def display():
-#     pass
-#
-# @decorator_function
-# def display_info(name, age):
-#     print ('display_info({}, {}) 함수가 실행됐습니다.'.format(name, age))
-#
-# display()
-# print
-# display_info('John', 25)
-
-"""
-display 함수가 실행되었습니다.
-display_info 함수가 실행되었습니다.
-display_info(John, 25) 함수가 실행됐습니다.
-"""
+display_info('영제',50)

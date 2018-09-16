@@ -1,40 +1,3 @@
-#"2017-04-01"   # 투자 시작월
-
-# Long Strategy : top 5 of 6mAVG < Median
-# 1   000120  CJ대한통운  0.496539  0.514243
-# 40  014680   한솔케미칼  0.494133  0.514243
-# 8   002240    고려제강  0.491457  0.514243
-# 38  012630    현대산업  0.466800  0.514243
-# 0   000050      경방  0.440761  0.514243
-#
-# Short Strategy : top 5 of 6mAVG > Median
-#       code    name     6mAVG    Median
-# 58  069260     휴켐스  0.531404  0.514243
-# 15  003550      LG  0.542610  0.514243
-# 23  005850     에스엘  0.545041  0.514243
-# 61  097950  CJ제일제당  0.554584  0.514243
-# 17  004170     신세계  0.600035  0.514243
-
-# High momentum for last 12 months - long
-# 020150	일진머티리얼즈
-# 115390	락앤락
-# 009420	한올바이오파마
-# 004170	신세계
-# 010060	OCI
-# 010120	LS산전
-# 003550	LG
-# 114090	GKL
-# 051900	LG생활건강
-# 005930	삼성전자
-
-# Low momentum for last 12 months - short
-# 000120	CJ대한통운
-# 000990	DB하이텍
-# 009540	현대중공업
-# 047810	한국항공우주
-# 047050	포스코대우
-# 003620	쌍용차
-
 import datetime
 import backtrader as bt
 import math
@@ -87,6 +50,8 @@ class TestStrategy(bt.Strategy):
         self.order = None
         self.buyprice = None
         self.buycomm = None
+        
+        self.log('d, {}'.format(self.getdatanames()),doprint=True)
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:  # broker 에게 order 가 submitted/accepted 상태면 skip
@@ -120,7 +85,26 @@ class TestStrategy(bt.Strategy):
                     .format(round(self.broker.getvalue())),doprint=True)
 
     def next(self):
-        self.log('Close, {0:,}'.format(round(self.dataclose[0])),doprint=False)
+        #self.log('Close, {0:,}'.format(round(self.dataclose[0])),doprint=True)
+        highs = self.data.high.get()
+        print(self.datas[1]._name,'highest', max(highs))
+        print(self.data._name)
+        self.log('High, {0:,}'.format(round(self.data.high.get()[0])),doprint=True)
+        self.log('Close, {0:,}'.format(round(self.datas[0].close[0])),doprint=True)
+        #self.log('volume1, {0:,}'.format(round(self.datas[1].volume[0])),doprint=True)
+        #self.log('lenght of the line, {}'.format(len(self.datas[1])),doprint=True)
+        #self.log('lenght of current bar, {}'.format(len(self)),doprint=True)
+        #for d in self.getdatanames():
+            #DATA = self.getdatabyname(d)
+            #self.log('posiion = , {}'.format(DATA),doprint=True)
+
+        #for i, d in enumerate(self.datas):
+            #dt, dn = self.datetime.date(), d._name
+            #pos = self.getposition(d).size
+            #pos2 = self.getpositionbyname(dn).size
+            #self.log('pos, {0:,}'.format(round(pos)),doprint=True)
+            #self.log('pos2, {0:,}'.format(round(pos2)),doprint=True)
+            #self.close(d)
 
         if self.order:
             return
@@ -150,13 +134,26 @@ def main(icode, ifromdate, itodate):
     code = icode
     fromdate = ifromdate
     todate   = itodate
-    print("\n")
-    print("code= {}, fromdate= {}, todate= {}".format(code, fromdate.date().isoformat(), todate.date().isoformat()))
+    #print("\n")
+    #print("code= {}, fromdate= {}, todate= {}".format(code, fromdate.date().isoformat(), todate.date().isoformat()))
     db_frame = pd.read_sql("SELECT * from dailycandle where code = {} and date between '{}' \
                             and '{}'".format(code, fromdate, todate), con=engine, index_col=["date"])
-    db_frame['openinterest'] = 0
+    #db_frame['adjclose'] = 99
+
     db_frame.drop(['code'], axis=1,inplace=True);
-    data = bt.feeds.PandasData(dataname=db_frame)
+    data = bt.feeds.PandasData(dataname=db_frame, name='aaa')
+    #------------------------------------------------------------------
+    cerebro.adddata(data)
+
+    code = "000050"
+    fromdate = ifromdate
+    todate   = itodate
+    #print("\n")
+    #print("code= {}, fromdate= {}, todate= {}".format(code, fromdate.date().isoformat(), todate.date().isoformat()))
+    db_frame = pd.read_sql("SELECT * from dailycandle where code = {} and date between '{}' \
+                            and '{}'".format(code, fromdate, todate), con=engine, index_col=["date"])
+    db_frame.drop(['code'], axis=1,inplace=True);
+    data = bt.feeds.PandasData(dataname=db_frame, name='000050')
     #------------------------------------------------------------------
     cerebro.adddata(data)
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1112</width>
-    <height>822</height>
+    <height>906</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -220,7 +220,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>현금주문</string>
+      <string>개별주문</string>
      </property>
     </widget>
    </widget>
@@ -311,7 +311,7 @@
        <x>10</x>
        <y>120</y>
        <width>741</width>
-       <height>401</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="rowCount">
@@ -348,31 +348,97 @@
       </property>
      </column>
     </widget>
+    <widget class="QPushButton" name="inquiry">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>460</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>조회</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>460</y>
+       <width>96</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>실시간조회</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>630</y>
-      <width>96</width>
-      <height>19</height>
+      <x>350</x>
+      <y>570</y>
+      <width>741</width>
+      <height>221</height>
      </rect>
     </property>
-    <property name="text">
-     <string>실시간조회</string>
+    <property name="title">
+     <string>주문 선정 종목 리스트</string>
     </property>
+    <widget class="QTableWidget" name="tableWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>721</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>주문유형</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>종목명</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>호가구분</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>수량</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>가격</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>상태</string>
+      </property>
+     </column>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="inquiry">
+   <widget class="QPushButton" name="batchOrder">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>630</y>
+      <x>950</x>
+      <y>800</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>조회</string>
+     <string>일괄주문</string>
     </property>
    </widget>
   </widget>

@@ -41,6 +41,7 @@ conn.close()
 
 print('code update complete')
 
+#kospi200
 BaseUrl = "http://finance.naver.com/sise/entryJongmok.nhn?&page="
 
 data = []

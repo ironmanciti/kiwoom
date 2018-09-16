@@ -47,20 +47,25 @@ def dbUpdate_Market():
     df.set_index(['date'], inplace=True)
     df.index.name = 'date'
 
+    df['open']  = df['open'] / 100
+    df['high']  = df['high'] / 100
+    df['low']   = df['low']  / 100
+    df['close'] = df['close'] / 100
+
     df.sort_index(axis=0, ascending=True, inplace=True)
 
     df.to_sql('marketcandle', con=engine, if_exists='replace', \
-                                        dtype={'code': sqlalchemy.types.CHAR(6),
+                                        dtype={'code': sqlalchemy.types.CHAR(3),
                                                'date': sqlalchemy.types.DateTime,
-                                               'open': sqlalchemy.types.Integer,
-                                               'high': sqlalchemy.types.Integer,
-                                               'low': sqlalchemy.types.Integer,
-                                               'close': sqlalchemy.types.Integer,
+                                               'open': sqlalchemy.types.Float(precision=2, asdecimal=True),
+                                               'high': sqlalchemy.types.Float(precision=2, asdecimal=True),
+                                               'low': sqlalchemy.types.Float(precision=2, asdecimal=True),
+                                               'close': sqlalchemy.types.Float(precision=2, asdecimal=True),
                                                'volume': sqlalchemy.types.Integer})
 
     print('code = ',kiwoom.code, ' -db updated')
 
-def process_stock_transaction():
+def process_stock_transaction():   #opt10081 주식일봉차트요청
 
     cnt = 0
     while kiwoom.remained_data == True:
@@ -77,8 +82,9 @@ def process_stock_transaction():
         kiwoom.comm_rq_data("opt10081_req", "opt10081", next, "0101")
         cnt += 1
 
-def process_market_transaction():
-
+def process_market_transaction():      #opt20006 업종일봉조회요청
+    # 업종코드 = 001:종합(KOSPI), 002:대형주, 003:중형주, 004:소형주 101:종합(KOSDAQ), 201:KOSPI200
+    # 기준일자 = YYYYMMDD (20160101 연도4자리, 월 2자리, 일 2자리 형식)
     cnt = 0
     while kiwoom.remained_data == True:
 
@@ -93,7 +99,6 @@ def process_market_transaction():
         kiwoom.comm_rq_data("opt20006_req", "opt20006", next, "0202")
         cnt += 1
 
-#%%
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     kiwoom = Kiwoom()
@@ -115,10 +120,6 @@ if __name__ == "__main__":
         market_code = str(sys.argv[4]) # 0: KOSPI, 3: ELW, 10: KOSDAQ, 8:ETF
         end_date = str(sys.argv[5]) # 기준일자
 
-    # Transaction code
-    # tr_code = "20006"  # KOSPI/KOSDAQ/대,중,소형 지수/KOSPI200
-    # tr_code = "10081"  # stocks
-
     if tr_code == "20006": # tr code
 
         batch_codes = ["001", "002", "003", "004", "101", "201"]
@@ -130,16 +131,16 @@ if __name__ == "__main__":
             kiwoom.code = code
             kiwoom.remained_data = True
             process_market_transaction()
-
-        dbUpdate_Market()
+            dbUpdate_Market()
 
         print("last updated code = ", code)
+
     elif tr_code == "10081":  # tr code
         if start_code < end_code:
             batch_codes = pd.read_sql("select code from stockCode where smarket = '" + market_code +\
                                       "' and code > '" + start_code + "' and code < '" + end_code + "'\
                                       order by code asc", con=engine)['code'].tolist()
-        elif start_code == end_code == '000000':
+        elif start_code == end_code == '201777':  # KOSPI200 에 속하면서 fscore 7 이상인 종목만 처리
             batch_codes = pd.read_sql("select code from stockcode where kospi200 = true and fscore >= 7", conn)['code'].tolist()
         else:
             print("invalid start/end_code")
