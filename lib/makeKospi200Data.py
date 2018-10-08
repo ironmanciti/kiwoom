@@ -33,6 +33,21 @@ def getStock(code, end_date):
 
     return df
 
+def check_for_nulls(df):
+    """
+    Test and report number of NAs in each column of the input data frame
+    :param df: pandas.DataFrame
+    :return: None
+    """
+    nan_cols = 0
+    for col in df.columns.values:
+        num_nans = np.sum(df[col].isnull())
+        if num_nans > 0:
+            print('%d Nans in col %s' % (num_nans, col))
+            nan_cols += 1
+    print('No of Nans cols:', nan_cols)
+    print('New shape of df: ', df.shape)
+
 def addFeatures(df, win_K, win_CCI, win_R, lags, RSI_span, win_ma):
     df["returns"] = df["close"].pct_change()
     df['returns'] = df["returns"].shift(-1)

@@ -5,13 +5,40 @@
 #df = pd.DataFrame.from_dict(dict) - DataFrame 반환
 
 import sys
+import os
 from PyQt5.QtWidgets import *
 from PyQt5.QAxContainer import *
 from PyQt5.QtCore import *
 import pandas as pd
-import time
+import logging
+from logging.handlers import TimedRotatingFileHandler
 
 TR_REQ_TIME_INTERVAL = 0.2
+
+#-------------------------------------------------------------------------------------------------
+# logger 준비하기
+#-------------------------------------------------------------------------------------------------
+if not os.path.exists('logs'):
+    os.makedirs('logs')
+# 로그 파일 핸들러
+fh_log = TimedRotatingFileHandler('logs/log', when='midnight', encoding='utf-8', backupCount=120)
+fh_log.setLevel(logging.DEBUG)
+
+# 콘솔 핸들러
+sh = logging.StreamHandler()
+sh.setLevel(logging.DEBUG)
+
+# 로깅 포멧 설정
+formatter = logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s')
+fh_log.setFormatter(formatter)
+sh.setFormatter(formatter)
+
+# 로거 생성
+logger = logging.getLogger('kiwoomMain')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(fh_log)
+logger.addHandler(sh)
+#-------------------------------------------------------------------------------------------------
 
 class Kiwoom(QAxWidget):
 
@@ -124,7 +151,13 @@ class Kiwoom(QAxWidget):
 
     def _event_connect(self, err_code):        # OnEventConnect 이벤트 발생하면 호출된다.
         if err_code == 0:
-            print("login success")                 # 연결상태 화면 출력
+            logger.debug("login success")                 # 연결성공
+        elif err_code == 100:
+            logger.debug("사용자 정보교환실패")
+        elif err_code == 101:
+            logger.debug("서버접속 실패")
+        elif err_code == 102:
+            logger.debug("버전처리 실패")
         else:
             print("connection failed, error code = {}".format(err_code))
 
@@ -158,6 +191,12 @@ class Kiwoom(QAxWidget):
         if rqname == "opt10081_req":    #주식일봉차트요청(종목코드/기준일자/수정주가구분 "1":유상증자)
             self._opt10081(rqname, trcode)
 
+        if rqname == "opt10085_req":    #계좌수익률요청
+            self._opt10085(rqname, trcode)
+
+        if rqname == "opt10086_req":    #일별주가요청
+            self._opt10086(rqname, trcode)
+
         if rqname == "opt20001_req":    #업종현재가요청(시장구분/업종코드)
             self._opt10081(rqname, trcode)  # opt10081 과 처리 logic 공유
 
@@ -184,6 +223,9 @@ class Kiwoom(QAxWidget):
         self.lowest_250  = self._get_comm_data(trcode, rqname, 0, "250최저")
         self.current_price = self._get_comm_data(trcode, rqname, 0, "시가")
 
+    def reset_opt10002_output(self):        # 주식거래원요청 (multi data)
+        self.opt10002_output = []
+
     def _opt10002(self, rqname, trcode):    # 주식거래원요청 (multi data)
         data_cnt = self._get_repeat_cnt(trcode, rqname)  # 반환된 data 갯수
         for i in range(data_cnt):
@@ -192,12 +234,12 @@ class Kiwoom(QAxWidget):
             sell_volume1 = self._get_comm_data(trcode, rqname, i, "매도거래량1")
             self.opt10002_output.append([updown, seller_name1, sell_volume1])
 
-    def reset_opt10002_output(self):
-        self.opt10002_output = []
+    def reset_opt10060_output(self):        # 종목별투자자기관별차트요청 (multi data)
+        self.opt10060_output = []
 
     def _opt10060(self, rqname, trcode):    # 종목별투자자기관별차트요청 (multi data)
         data_cnt = self._get_repeat_cnt(trcode, rqname)  # 반환된 data 갯수
-        print("cnt ", data_cnt)
+
         for i in range(data_cnt):
             date = self._get_comm_data(trcode, rqname, i, "일자")
             person = self._get_comm_data(trcode, rqname, i, "개인투자자")
@@ -205,9 +247,6 @@ class Kiwoom(QAxWidget):
             institute = self._get_comm_data(trcode, rqname, i, "기관계")
             financial_invest = self._get_comm_data(trcode, rqname, i, "금융투자")
             self.opt10060_output.append([date, person, foreigner, institute, financial_invest])
-
-    def reset_opt10060_output(self):
-        self.opt10060_output = []
 
     def _opt10081(self, rqname, trcode):                 # 주식일봉차트조회(multi-data)요청
         data_cnt = self._get_repeat_cnt(trcode, rqname)  # 반환된 data 갯수
@@ -229,6 +268,54 @@ class Kiwoom(QAxWidget):
             self.ohlcv['close'].append(int(close))
             self.ohlcv['volume'].append(int(volume))
 
+    def reset_opt10085_output(self):                 # 계좌수익률요청(multi-data)
+        self.opt10085_output = []
+
+    def _opt10085(self, rqname, trcode):                 # 계좌수익률요청(multi-data)
+        data_cnt = self._get_repeat_cnt(trcode, rqname)  # 반환된 data 갯수
+
+        for i in range(data_cnt):
+            date = self._get_comm_data(trcode, rqname, i, "일자")
+            code = self._get_comm_data(trcode, rqname, i, "종목코드")
+            code_name = self._get_comm_data(trcode, rqname, i, "종목명")
+            current_price = self._get_comm_data(trcode, rqname, i, "현재가")
+            purchase_price = self._get_comm_data(trcode, rqname, i, "매입가")
+            purchase_amount = self._get_comm_data(trcode, rqname, i, "매입금액")
+            stock_volume = self._get_comm_data(trcode, rqname, i, "보유수량")
+            self.opt10085_output.append([date, code, code_name, current_price, purchase_price, purchase_amount,
+                            stock_volume])
+
+    # def reset_opt10086_output(self):                    # 일별주가요청(multi-data)
+    #     self.opt10085_output = []
+
+    def _opt10086(self, rqname, trcode):                 # 일별주가요청(multi-data)
+        data_cnt = self._get_repeat_cnt(trcode, rqname)  # 반환된 data 갯수
+
+        for i in range(data_cnt):
+            date = self._get_comm_data(trcode, rqname, i, "날짜")
+            open = self._get_comm_data(trcode, rqname, i, "시가")
+            high = self._get_comm_data(trcode, rqname, i, "고가")
+            low = self._get_comm_data(trcode, rqname, i, "저가")
+            close = self._get_comm_data(trcode, rqname, i, "종가")
+            volume = self._get_comm_data(trcode, rqname, i, "거래량")
+            credit_ratio = self._get_comm_data(trcode, rqname, i, "신용비")
+            foreigner_net_buy = self._get_comm_data(trcode, rqname, i, "외인순매수")
+            inst_net_buy = self._get_comm_data(trcode, rqname, i, "기관순매수")
+            # kiwoom instance 생성한 program 에서 kiwoom.dailyprice dictionary 생성
+            self.dailyprice['code'].append(self.code)
+            self.dailyprice['date'].append(date)
+            self.dailyprice['open'].append(int(open))
+            self.dailyprice['high'].append(int(high))
+            self.dailyprice['low'].append(int(low))
+            self.dailyprice['close'].append(int(close))
+            self.dailyprice['volume'].append(int(volume))
+            self.dailyprice['credit_ratio'].append(float(credit_ratio))
+            # -- 하락 & minus, +- 상승 & minus
+            foreigner_net_buy = Kiwoom.remove_first_minus(foreigner_net_buy)
+            self.dailyprice['foreigner_net_buy'].append(int(foreigner_net_buy))
+            inst_net_buy = Kiwoom.remove_first_minus(inst_net_buy)
+            self.dailyprice['inst_net_buy'].append(int(inst_net_buy))
+
     def _opt20006(self, rqname, trcode):           # 업종일봉조회(multi data)요청
         data_cnt = self._get_repeat_cnt(trcode, rqname)
 
@@ -249,8 +336,13 @@ class Kiwoom(QAxWidget):
             self.ohlcv['volume'].append(int(volume))
 
     def _opw00001(self, rqname, trcode):    #예수금상세현황요청
+        order_allowable_amt = self._get_comm_data(trcode, rqname, 0, "주문가능금액")
         d2_deposit = self._get_comm_data(trcode, rqname, 0, "d+2추정예수금")
+        self.order_allowable_amt = Kiwoom.change_format(order_allowable_amt)
         self.d2_deposit = Kiwoom.change_format(d2_deposit)
+
+    def reset_opw00018_output(self):        #계좌평가잔고내역요청
+        self.opw00018_output = {'single': [], 'multi': []}
 
     def _opw00018(self, rqname, trcode):    #계좌평가잔고내역요청
         # single data
@@ -264,7 +356,6 @@ class Kiwoom(QAxWidget):
         self.opw00018_output['single'].append(Kiwoom.change_format(total_eval_price))
         self.opw00018_output['single'].append(Kiwoom.change_format(total_eval_profit_loss_price))
 
-        #total_earning_rate = Kiwoom.change_format(total_earning_rate)
         total_earning_rate = str(total_earning_rate)
 
         if self.get_server_gubun():                               # 1: 모의투자서버, 나머지: 실서버
@@ -294,9 +385,6 @@ class Kiwoom(QAxWidget):
             self.opw00018_output['multi'].append([name, quantity, purchase_price, current_price, eval_profit_loss_price,
                                                   earning_rate])
 
-    def reset_opw00018_output(self):        #계좌평가잔고내역요청
-        self.opw00018_output = {'single': [], 'multi': []}
-
     @staticmethod
     def change_format(data):
         strip_data = data.lstrip('-0')                 # 문자열 왼쪽의 -, 0 문자열 제거
@@ -324,71 +412,110 @@ class Kiwoom(QAxWidget):
 
         return strip_data
 
+    @staticmethod
+    def remove_first_minus(data):
+
+        if data.startswith('--'):
+            data = data[1:]           # --로 시작하면 - 추가
+        if data == '':
+            data = 0
+        return data
+
+def kw_get_future_list():
+    future_list = kiwoom.get_future_list()   # 지수선물 리스트
+    for i in range(len(future_list)):
+        logger.debug(future_list[i])
+
+def kw_get_future_code_by_index(code):
+    # 지수선물 코드 반환 ex) 0: 최근월선물, 1: 차근월물, 2: 차차근월물, 3: 차차차근월물, 4: 최근월스프레드
+    future_code = kiwoom.get_future_code_by_index(code)
+    logger.debug(future_code)       # ex) 101NC000 - K200선물1812, 101P3000 - K200선물1903
+
+def kw_get_act_price_list():   # 지수옵션 행사가 리스트
+    price_list = kiwoom.get_act_price_list()
+    for i in range(len(price_list)):
+        logger.debug(price_list[i])
+
+def kw_get_month_list():      # 지수옵션 월물 리스트
+    month_list = kiwoom.get_month_list()
+    for i in range(len(month_list)):
+        logger.debug(month_list[i])
+
+def kw_get_option_code(act_price, cp, month):    # 행사가, 콜풋구분, 월물로 종목코드 구하기
+    code = kiwoom.get_option_code(act_price, cp, month)
+    logger.debug(code)     #201NA300
+
+def kw_get_option_code_by_month(code, cp, month):  # 종목코드와 동일한 행사가의 다른 월물 코드
+     other_code = kiwoom.get_option_code_by_month(code, cp, month)
+     logger.debug(other_code)
+
+def kw_get_option_atm():         # 지수옵션 ATM
+    logger.debug(kiwoom.get_option_atm())
+
+def kw_get_opt10001(code):       # 주식기본정보요청
+    kiwoom.set_input_value("종목코드",code)
+    kiwoom.comm_rq_data("opt10001_req", "opt10001", 0, "0101")
+
+    logger.debug(kiwoom.closing_month)
+    logger.debug(kiwoom.par_value)
+    logger.debug(kiwoom.per)
+    logger.debug(kiwoom.highest_250)
+    logger.debug(kiwoom.lowest_250)
+    logger.debug(kiwoom.current_price)
+
+def kw_get_opt10002(code):      # 주식거래원요청
+    kiwoom.reset_opt10002_output()
+    kiwoom.set_input_value("종목코드",code)
+    kiwoom.comm_rq_data("opt10002_req", "opt10002", 0, "0101")
+    for i in range(len(kiwoom.opt10002_output)):
+        for j in range(3):
+            logger.debug(kiwoom.opt10002_output[i][j])
+
+def kw_get_opw00018():          # 계좌평가잔고내역요청
+    kiwoom.reset_opw00018_output()
+    account_no = kiwoom.get_login_info("ACCNO").split(";")[0]
+    kiwoom.set_input_value("계좌번호", account_no)
+    kiwoom.comm_rq_data("opw00018_req", "opw00018", 0, "0101") # RQName, trcode, 0:조회/2:연속, 화면번호
+
+    logger.debug(account_no)
+    logger.debug(kiwoom.opw00018_output['single'])
+    logger.debug(kiwoom.opw00018_output['multi'])
+
+def kw_get_opt10085():          # 계좌수익률요청
+    kiwoom.reset_opt10085_output()
+    kiwoom.set_input_value("계좌번호","8108830011")
+    kiwoom.comm_rq_data("opt10085_req", "opt10085", 0, "0101")
+    label = ["일자","종목코드","종목명","현재가","매입가","매입금액","보유수량"]
+    for i in range(len(kiwoom.opt10085_output)):
+        for j in range(7):
+            logger.debug(label[j] + kiwoom.opt10085_output[i][j])
+        logger.debug(" ")
+
+def kw_get_opw00001(account_no):    # 예수금상세현황요청
+    kiwoom.set_input_value("계좌번호",account_no)
+    # kiwoom.set_input_value("비밀번호","2248")   # 계좌비밀번호 저장으로 아이콘 설정하면 필요 없음
+    kiwoom.comm_rq_data("opw00001_req", "opw00001", 0, "0101")
+    logger.debug("주문가능금액 :" + kiwoom.order_allowable_amt)
+    logger.debug("d+2추정예수금 :" + kiwoom.d2_deposit)
+
 if __name__ == "__main__":
+
     app = QApplication(sys.argv)    # QAxWidget class 가 정상 작동하려면 QApplication instance 필요
     kiwoom = Kiwoom()               # kiwoom 객체 생성
     kiwoom.comm_connect()           # login 수행
 
-    # future_list = kiwoom.get_future_list()   # 지수선물 리스트
-    # for i in range(len(future_list)):
-    #     print(future_list[i])
+    # kw_get_future_list()   # 지수선물 리스트
+    # kw_get_future_code_by_index(1)  # 지수선물 코드 반환
+    # kw_get_act_price_list()   # 지수옵션 행사가 리스트
+    # kw_get_month_list()         # 지수옵션 월물 리스트
+    # kw_get_option_code("300.00", 2, "201810")
+    # kw_get_option_code("292.50", 3, "201810")
+    # kw_get_option_code_by_month("201NA300", 3, "201811")  # 종목코드와 동일한 행사가의 다른 월물 코드
+    # kw_get_option_atm()      # 지수옵션 ATM
+    # kw_get_opt10001("000660")    # 주식기본정보요청
+    # kw_get_opt10002("000660")    # 주식거래원요청
+    # kw_get_opw00018()            # 계좌평가잔고내역요청
+    # kw_get_opt10085()             # 계좌수익률요청
 
-    # 지수선물 코드 반환 ex) 0: 최근월선물, 1: 차근월물, 2: 차차근월물, 3: 차차차근월물, 4: 최근월스프레드
-    # future_code = kiwoom.get_future_code_by_index(0)
-    # print(future_code)       # ex) 101NC000 - K200선물1812, 101P3000 - K200선물1903
-
-    # price_list = kiwoom.get_act_price_list()
-    # for i in range(len(price_list)):
-    #     print(price_list[i])
-    #
-    # month_list = kiwoom.get_month_list()
-    # for i in range(len(month_list)):
-    #     print(month_list[i])
-
-    code = kiwoom.get_option_code("300.00", 2, "201810")
-    print(code)     #201NA300
-    code = kiwoom.get_option_code("292.50", 3, "201810")
-    print(code)     #301NA292
-
-    code = kiwoom.get_option_code_by_month("201NA300", 3, "201811")
-    print(code)     #301NB300
-
-    print(kiwoom.get_option_atm())
-
-    # kiwoom.set_input_value("종목코드","000660")
-    # kiwoom.comm_rq_data("opt10001_req", "opt10001", 0, "0101")
-    #
-    # print(kiwoom.closing_month)
-    # print(kiwoom.par_value)
-    # print(kiwoom.per)
-    # print(kiwoom.highest_250)
-    # print(kiwoom.lowest_250)
-    # print(kiwoom.current_price)
-    #
-    # kiwoom.reset_opt10002_output()
-    # kiwoom.set_input_value("종목코드","000660")
-    # kiwoom.comm_rq_data("opt10002_req", "opt10002", 0, "0101")
-    # for i in range(len(kiwoom.opt10002_output)):
-    #     for j in range(3):
-    #         print(kiwoom.opt10002_output[i][j])
-
-    # kiwoom.reset_opw00018_output()
-    # account_no = kiwoom.get_login_info("ACCNO").split(";")[0]
-    # kiwoom.set_input_value("계좌번호", account_no)
-    # kiwoom.comm_rq_data("opw00018_req", "opw00018", 0, "0101") # RQName, trcode, 0:조회/2:연속, 화면번호
-    #
-    # print(account_no)
-    # print(kiwoom.opw00018_output['single'])
-    # print(kiwoom.opw00018_output['multi'])
-
-
-    # 모의 위탁계좌
-    # kiwoom.set_input_value("계좌번호","8108830011")
-    ## kiwoom.set_input_value("비밀번호","2248")   # 계좌비밀번호 저장으로 아이콘 설정하면 필요 없음
-    # kiwoom.comm_rq_data("opw00001_req", "opw00001", 0, "0101")
-
-    # 모의 선물옵션계좌
-    # kiwoom.set_input_value("계좌번호","8741085731")
-    # kiwoom.comm_rq_data("opw00001_req", "opw00001", 0, "0101")
-    #
-    # print(kiwoom.d2_deposit)
+    # kw_get_opw00001("8108830011")   # 모의위탁계좌
+    # kw_get_opw00001("8741085731")   # 모의 선물옵션계좌

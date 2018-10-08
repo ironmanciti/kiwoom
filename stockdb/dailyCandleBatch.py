@@ -28,7 +28,7 @@ def dbUpdate_Stock():
     df.index.name = 'date'
 
     df.sort_index(axis=0, ascending=True, inplace=True)
-
+    # append : insert new values to the existing table
     df.to_sql('dailycandle', con=engine, if_exists='append', \
                             dtype={'code': sqlalchemy.types.CHAR(6),
                                    'date': sqlalchemy.types.DateTime,
@@ -53,7 +53,7 @@ def dbUpdate_Market():
     df['close'] = df['close'] / 100
 
     df.sort_index(axis=0, ascending=True, inplace=True)
-
+    # replace - drop table before inserting new values
     df.to_sql('marketcandle', con=engine, if_exists='replace', \
                                         dtype={'code': sqlalchemy.types.CHAR(3),
                                                'date': sqlalchemy.types.DateTime,
@@ -104,10 +104,10 @@ if __name__ == "__main__":
     kiwoom = Kiwoom()
     kiwoom.comm_connect()
 
-    if len(sys.argv) < 6:
+    if len(sys.argv) < 7:
         print("Arguments should be 1 : 20006 or 10081, 2: start_code, 3: end_code, 4: market_code ")
         print("          in case of 20006, start_code=000000, end_code=999999, market_code=0, end_date=999999")
-        print("          in case of 10081, start_code / end_code / market_code /end_date should be given.")
+        print("          in case of 10081, start_code / end_code / market_code /end_date / kospi_200 should be given.")
         print(sys.argv)
         quit()
     elif sys.argv[1] not in ["20006", "10081"]:
@@ -119,8 +119,16 @@ if __name__ == "__main__":
         end_code   = str(sys.argv[3]).zfill(6)
         market_code = str(sys.argv[4]) # 0: KOSPI, 3: ELW, 10: KOSDAQ, 8:ETF
         end_date = str(sys.argv[5]) # 기준일자
+        kospi_200 = str(sys.argv[6]) # 1: kospi200 only, 0: all 종목
+        print("arguments")
+        print("tr_code =", tr_code)
+        print("start_code =", start_code)
+        print("end_code = ", end_code)
+        print("market_code =", market_code)
+        print("end_date =", end_date)
+        print("kospi_200 =", kospi_200)
 
-    if tr_code == "20006": # tr code
+    if tr_code == "20006": # tr code 20006 - 업종일봉조회
 
         batch_codes = ["001", "002", "003", "004", "101", "201"]
         kiwoom.ohlcv = {'code': [], 'date': [], 'open': [], 'high': [], 'low': [], \
@@ -135,15 +143,22 @@ if __name__ == "__main__":
 
         print("last updated code = ", code)
 
-    elif tr_code == "10081":  # tr code
-        if start_code < end_code:
-            batch_codes = pd.read_sql("select code from stockCode where smarket = '" + market_code +\
-                                      "' and code > '" + start_code + "' and code < '" + end_code + "'\
-                                      order by code asc", con=engine)['code'].tolist()
-        elif start_code == end_code == '201777':  # KOSPI200 에 속하면서 fscore 7 이상인 종목만 처리
+    elif tr_code == "10081":  # tr code 10081 - 주식일봉차트요청
+        if start_code == end_code == '201777':  # KOSPI200 에 속하면서 fscore 7 이상인 종목만 처리
             batch_codes = pd.read_sql("select code from stockcode where kospi200 = true and fscore >= 7", conn)['code'].tolist()
+        elif start_code <= end_code:
+            if kospi_200 == '1':
+                batch_codes = pd.read_sql("select code from stockcode where smarket = '" + market_code +\
+                                          "' and code >= '" + start_code + "' and code <= '" + end_code +
+                                          "' and kospi200 = '" + kospi_200 +\
+                                          "' order by code asc", con=engine)['code'].tolist()
+            else: # kospi_200 = '0'
+                batch_codes = pd.read_sql("select code from stockcode where smarket = '" + market_code +\
+                                          "' and code >= '" + start_code + "' and code <= '" + end_code + "'\
+                                          order by code asc", con=engine)['code'].tolist()
         else:
             print("invalid start/end_code")
+            print("start_code = ", start_code, "end_code = ", end_code)
             quit()
 
         process_cnt = 0
@@ -151,7 +166,7 @@ if __name__ == "__main__":
         if len(batch_codes) > 0:
 
             for code in batch_codes:
-                if process_cnt > 100:
+                if process_cnt > 50:
                     time.sleep(TR_REQ_SLEEP_INTERVAL)
                     process_cnt = 0
 
