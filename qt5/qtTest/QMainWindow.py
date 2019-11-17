@@ -1,3 +1,7 @@
+"""
+p.302 이벤트 처리
+"""
+
 import sys
 from PyQt5.QtWidgets import *
 

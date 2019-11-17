@@ -285,9 +285,6 @@ class Kiwoom(QAxWidget):
             self.opt10085_output.append([date, code, code_name, current_price, purchase_price, purchase_amount,
                             stock_volume])
 
-    # def reset_opt10086_output(self):                    # 일별주가요청(multi-data)
-    #     self.opt10085_output = []
-
     def _opt10086(self, rqname, trcode):                 # 일별주가요청(multi-data)
         data_cnt = self._get_repeat_cnt(trcode, rqname)  # 반환된 data 갯수
 
@@ -516,6 +513,5 @@ if __name__ == "__main__":
     # kw_get_opt10002("000660")    # 주식거래원요청
     # kw_get_opw00018()            # 계좌평가잔고내역요청
     # kw_get_opt10085()             # 계좌수익률요청
-
     # kw_get_opw00001("8108830011")   # 모의위탁계좌
     # kw_get_opw00001("8741085731")   # 모의 선물옵션계좌

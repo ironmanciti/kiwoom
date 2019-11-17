@@ -178,7 +178,7 @@ if __name__ == "__main__":
                 process_stock_transaction()
 
                 process_cnt += 1
-                dbUpdate_Stock()
+                #dbUpdate_Stock()
                 print("process_cnt = ",process_cnt)
         else:
             print("no code for ", start_code, end_code)
